@@ -3,29 +3,43 @@ import { View, Text } from "react-native";
 import { connect } from "react-redux";
 
 import PlaceList from "../../components/PlaceList/PlaceList";
-import share from "../../assets/share.png";
 
 class FindPlaceScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+  }
+
+  onNavigatorEvent = event => {
+    if (event.type === "NavBarButtonPress") {
+      if (event.id === "sideDrawerToggle") {
+        this.props.navigator.toggleDrawer({
+          side: "left"
+        });
+      }
+    }
+  };
+
   itemSelectedHandler = key => {
     const selPlace = this.props.places.find(place => {
       return place.key === key;
     });
-    console.log(this.props.navigator);
     this.props.navigator.push({
       screen: "awesome-places.PlaceDetailScreen",
       title: selPlace.name,
       passProps: {
         selectedPlace: selPlace
-      },
-      animation: true,
-      animationType: "slide-horizontal"
+      }
     });
   };
 
   render() {
     return (
       <View>
-        <PlaceList places={this.props.places} onItemSelected={this.itemSelectedHandler} />
+        <PlaceList
+          places={this.props.places}
+          onItemSelected={this.itemSelectedHandler}
+        />
       </View>
     );
   }

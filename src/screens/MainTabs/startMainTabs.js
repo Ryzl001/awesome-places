@@ -11,6 +11,10 @@ const startTabs = () => {
   //     Icon.getImageSource("ios-share-alt", 30)
   // ]).then(sources => {
   Navigation.startTabBasedApp({
+    appStyle: {
+      // navBarButtonColor: "#000eee",
+      // navBarBackgroundColor: "#eee000"
+    },
     tabs: [
       {
         screen: "awesome-places.FindPlaceScreen",
@@ -18,10 +22,18 @@ const startTabs = () => {
         title: "Find Place",
         icon: map,
         navigatorButtons: {
-          leftButtons: [
+          rightButtons: [
             {
+              // buttonColor: "blue",
               icon: menu,
-              title: "Menu"
+              // component: "awesome-places.CustomButton",
+              // passProps: {
+              //   iconName: "ios-trash"
+              // },
+              // title: "Menu",
+              id: "sideDrawerToggle"
+              // buttonColor: "blue",
+              // buttonFontSize: 14
             }
           ]
         }
@@ -32,10 +44,17 @@ const startTabs = () => {
         title: "Share Place",
         icon: share,
         navigatorButtons: {
-          leftButtons: [
+          rightButtons: [
             {
               icon: menu,
-              title: "Menu"
+              // component: "awesome-places.CustomButton",
+              // passProps: {
+              //   iconName: "ios-trash"
+              // },
+              title: "Menu",
+              id: "sideDrawerToggle"
+              // buttonColor: "blue",
+              // buttonFontSize: 14
             }
           ]
         }
@@ -46,6 +65,11 @@ const startTabs = () => {
         screen: "awesome-places.SideDrawer"
       }
     }
+    // appStyle: {
+    //   // tabBarButtonColor: "#ffff00",
+    //   navBarComponentAlignment: "fill",
+    //   navBarTextFontSize: 18
+    // }
   });
   // });
 };

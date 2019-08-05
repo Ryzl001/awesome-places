@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { View, Image, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native";
 import { connect } from "react-redux";
 
 import Icon from "react-native-vector-icons/Ionicons";
@@ -9,7 +16,7 @@ class PlaceDetail extends Component {
   placeDeletedHandler = () => {
     this.props.onDeletePlace(this.props.selectedPlace.key);
     this.props.navigator.pop();
-  };
+  }
 
   render() {
     return (
@@ -54,7 +61,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(PlaceDetail);
+export default connect(null, mapDispatchToProps)(PlaceDetail);
