@@ -24,14 +24,14 @@ const startTabs = () => {
         navigatorButtons: {
           rightButtons: [
             {
+              id: "sideDrawerToggle",
+              title: "Menu",
+              icon: menu
               // buttonColor: "blue",
-              icon: menu,
               // component: "awesome-places.CustomButton",
               // passProps: {
               //   iconName: "ios-trash"
               // },
-              // title: "Menu",
-              id: "sideDrawerToggle"
               // buttonColor: "blue",
               // buttonFontSize: 14
             }
@@ -46,13 +46,13 @@ const startTabs = () => {
         navigatorButtons: {
           rightButtons: [
             {
-              icon: menu,
+              id: "sideDrawerToggle",
+              title: "Menu",
+              icon: menu
               // component: "awesome-places.CustomButton",
               // passProps: {
               //   iconName: "ios-trash"
               // },
-              title: "Menu",
-              id: "sideDrawerToggle"
               // buttonColor: "blue",
               // buttonFontSize: 14
             }
@@ -63,7 +63,9 @@ const startTabs = () => {
     drawer: {
       left: {
         screen: "awesome-places.SideDrawer"
-      }
+      },
+      type: "TheSideBar",
+      animationType: "airbnb"
     }
     // appStyle: {
     //   // tabBarButtonColor: "#ffff00",

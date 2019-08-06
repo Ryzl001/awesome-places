@@ -29,17 +29,16 @@ class FindPlaceScreen extends Component {
       title: selPlace.name,
       passProps: {
         selectedPlace: selPlace
-      }
+      },
+      animated: true,
+      animationType: "slide-horizontal"
     });
   };
 
   render() {
     return (
       <View>
-        <PlaceList
-          places={this.props.places}
-          onItemSelected={this.itemSelectedHandler}
-        />
+        <PlaceList places={this.props.places} onItemSelected={this.itemSelectedHandler} />
       </View>
     );
   }
