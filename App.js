@@ -6,7 +6,6 @@ import SharePlaceScreen from "./src/screens/SharePlace/SharePlace";
 import FindPlaceScreen from "./src/screens/FindPlace/FindPlace";
 import PlaceDetailScreen from "./src/screens/PlaceDetail/PlaceDetail";
 import SideDrawer from "./src/screens/SideDrawer/SideDrawer";
-import CustomButton from "./src/screens/CustomButton/CustomButton";
 
 import configureStore from "./src/store/configureStore";
 
@@ -33,7 +32,6 @@ Navigation.registerComponent(
   Provider
 );
 Navigation.registerComponent("awesome-places.SideDrawer", () => SideDrawer);
-Navigation.registerComponent("awesome-places.CustomButton", () => CustomButton);
 
 // Start a App
 Navigation.startSingleScreenApp({
