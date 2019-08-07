@@ -11,16 +11,20 @@ import backgroundImage from "../../assets/background.jpg";
 
 class AuthScreen extends Component {
   state = {
-    respStyles: {
-      pwContainerDirection: "column",
-      pwContainerJustifyContent: "flex-start",
-      pwWrapperWidth: "100%"
-    }
+    viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape"
+    // respStyles: {
+    // pwContainerDirection: "column",
+    // pwContainerJustifyContent: "flex-start",
+    // pwWrapperWidth: "100%"
+    // }
   };
 
   constructor(props) {
     super(props);
     Dimensions.addEventListener("change", dims => {
+      this.setState({
+        viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape"
+      });
       // if (dims.window.height < 500) {
       //   this.setState({
       //     respStyles: {
@@ -43,14 +47,14 @@ class AuthScreen extends Component {
       //   });
       // }
 
-      this.setState({
-        respStyles: {
-          pwContainerDirection: Dimensions.get("window").height > 500 ? "column" : "row",
-          pwContainerJustifyContent:
-            Dimensions.get("window").height > 500 ? "flex-start" : "space-between",
-          pwWrapperWidth: Dimensions.get("window").height > 500 ? "100%" : "49.5%"
-        }
-      });
+      // this.setState({
+      //   respStyles: {
+      //     pwContainerDirection: Dimensions.get("window").height > 500 ? "column" : "row",
+      //     pwContainerJustifyContent:
+      //       Dimensions.get("window").height > 500 ? "flex-start" : "space-between",
+      //     pwWrapperWidth: Dimensions.get("window").height > 500 ? "100%" : "49.5%"
+      //   }
+      // });
     });
   }
 
@@ -61,7 +65,7 @@ class AuthScreen extends Component {
   render() {
     let headintText = null;
     // console.log(Dimensions.get("window"));
-    if (Dimensions.get("window").height > 500) {
+    if (this.state.viewMode === "portrait") {
       headintText = (
         <MainText>
           <HeadingText>Please Log In</HeadingText>
@@ -82,17 +86,30 @@ class AuthScreen extends Component {
           <View style={styles.inputContainer}>
             <DefaultInput placeholder="Your E-mail Address" style={styles.input} />
             <View
-              style={{
-                flexDirection: this.state.respStyles.pwContainerDirection,
-                justifyContent: this.state.respStyles.pwContainerJustifyContent
-              }}
+              style={
+                this.state.viewMode === "portrait"
+                  ? styles.portraitPasswordContainer
+                  : styles.landscapePasswordContainer
+              }
             >
-              <View style={{ width: this.state.respStyles.pwWrapperWidth }}>
+              <View
+                style={
+                  this.state.viewMode === "portrait"
+                    ? styles.portraitPasswordWrapper
+                    : styles.landscapePasswordWrapper
+                }
+              >
                 <DefaultInput placeholder="Password" style={styles.input} />
               </View>
               {/* możemy wstawiać kolejne style jako element tabelii */}
               {/* <DefaultInput placeholder="Password" style={[styles.input, { borderColor: "red" }]} /> */}
-              <View style={{ width: this.state.respStyles.pwWrapperWidth }}>
+              <View
+                style={
+                  this.state.viewMode === "portrait"
+                    ? styles.portraitPasswordWrapper
+                    : styles.landscapePasswordWrapper
+                }
+              >
                 <DefaultInput placeholder="Confirm Password" style={styles.input} />
               </View>
             </View>
@@ -130,12 +147,19 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1
   },
-  passwordContainer: {
-    flexDirection: Dimensions.get("window").height > 500 ? "column" : "row",
+  landscapePasswordContainer: {
+    flexDirection: "row",
     justifyContent: "space-between"
   },
-  passwordWrapper: {
-    width: Dimensions.get("window").height > 500 ? "100%" : "49.5%"
+  portraitPasswordContainer: {
+    flexDirection: "column",
+    justifyContent: "flex-start"
+  },
+  landscapePasswordWrapper: {
+    width: "49.5%"
+  },
+  portraitPasswordWrapper: {
+    width: "100%"
   }
 });
 
