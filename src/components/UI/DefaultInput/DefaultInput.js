@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#eee",
     padding: 5,
-    margin: 8
+    marginBottom: 5
   }
 });
 
