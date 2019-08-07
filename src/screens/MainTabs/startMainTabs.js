@@ -60,18 +60,22 @@ const startTabs = () => {
         }
       }
     ],
+    tabsStyle: {
+      tabBarBackgroundColor: "#551A8B"
+    },
     drawer: {
       left: {
         screen: "awesome-places.SideDrawer"
       },
       type: "TheSideBar",
       animationType: "airbnb"
+    },
+    appStyle: {
+      tabBarSelectedButtonColor: "#ff9900"
+      // tabBarButtonColor: "#ffff00",
+      // navBarComponentAlignment: "fill",
+      // navBarTextFontSize: 18
     }
-    // appStyle: {
-    //   // tabBarButtonColor: "#ffff00",
-    //   navBarComponentAlignment: "fill",
-    //   navBarTextFontSize: 18
-    // }
   });
   // });
 };
