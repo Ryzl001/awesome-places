@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
 import { connect } from "react-redux";
 
 import PlaceList from "../../components/PlaceList/PlaceList";
@@ -10,7 +10,8 @@ class FindPlaceScreen extends Component {
   };
 
   state = {
-    placesLoaded: false
+    placesLoaded: false,
+    removeAnim: new Animated.Value(1)
   };
 
   constructor(props) {
@@ -44,18 +45,37 @@ class FindPlaceScreen extends Component {
   };
 
   plecesSearchHandler = () => {
-    this.setState({
-      placesLoaded: true
-    });
+    Animated.timing(this.state.removeAnim, {
+      toValue: 0,
+      duration: 500,
+      useNativeDriver: true
+    }).start();
   };
 
   render() {
     let content = (
-      <TouchableOpacity onPress={this.plecesSearchHandler}>
-        <View style={styles.searchButton}>
-          <Text style={styles.searchButtonText}>Find Places</Text>
-        </View>
-      </TouchableOpacity>
+      <Animated.View
+        style={{
+          opacity: this.state.removeAnim,
+          transform: [
+            {
+              scale: this.state.removeAnim.interpolate({
+                // wykorzystujemy animację z 1 do 0.
+                // Jako 0, czyli końcowy wynik chcemy mieć 12,
+                // a jako 1,  czyli początkowy wstawiamy 1 - scale
+                inputRange: [0, 1],
+                outputRange: [12, 1]
+              })
+            }
+          ]
+        }}
+      >
+        <TouchableOpacity onPress={this.plecesSearchHandler}>
+          <View style={styles.searchButton}>
+            <Text style={styles.searchButtonText}>Find Places</Text>
+          </View>
+        </TouchableOpacity>
+      </Animated.View>
     );
     if (this.state.placesLoaded) {
       content = (
